@@ -1,4 +1,4 @@
-import react from "react-router-dom";
+import React from "react";
 import "./App.css";
 import PublicLayout from "./layout/PublicLayout";
 

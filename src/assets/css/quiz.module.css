@@ -1,0 +1,8 @@
+.quizHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.timer {
+  padding-right: 10px;
+}

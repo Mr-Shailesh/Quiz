@@ -1,0 +1,14 @@
+.countdown {
+  color: red;
+  animation: blink 1s step-start infinite;
+}
+
+.end {
+  color: red;
+}
+
+@keyframes blink {
+  10% {
+    opacity: 0;
+  }
+}

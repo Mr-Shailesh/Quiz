@@ -1,0 +1,27 @@
+.guideline {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+.left {
+  width: 60%;
+}
+.right {
+  width: 40%;
+  margin-top: 50px;
+}
+
+.right img {
+  height: 450px;
+  width: 550px;
+}
+
+.rules {
+  text-align: initial;
+  padding: 20px;
+}
+
+.rules li h4 {
+  margin: 8px;
+}
