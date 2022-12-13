@@ -10,8 +10,8 @@ const Timer = () => {
     let timer = setInterval(() => {
       setTime((time) => {
         if (time === 0) {
-          // alert("Time up!! ");
-          // navigate("/greet");
+          alert("Time up!! ");
+          navigate("/greet");
           clearInterval(timer);
           return 0;
         } else return time - 1;
@@ -21,7 +21,7 @@ const Timer = () => {
   return (
     <div>
       <p
-        className={`${time <= 3 ? Styles.countdown : time === 0 && Styles.end}`}
+        className={`${time === 0 ? Styles.end : time <= 3 && Styles.countdown}`}
       >
         Time left: {`${Math.floor(time / 60)}`.padStart(2, 0)}:
         {`${time % 60}`.padStart(2, 0)}
