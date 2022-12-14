@@ -11,7 +11,7 @@ const Header = () => {
           alt="logo"
         />
       </Link>
-      <button>Login</button>
+      {/* <button>Login</button> */}
     </div>
   );
 };

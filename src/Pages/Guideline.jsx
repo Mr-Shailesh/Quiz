@@ -6,7 +6,9 @@ import Start from "../components/Button/Start";
 const Guideline = () => {
   return (
     <div>
-      <h2>Guideline</h2>
+      <div className={Styles.heading}>
+        <h2>Guideline</h2>
+      </div>
       <div className={Styles.guideline}>
         <div className={Styles.left}>
           <h1>Rules</h1>

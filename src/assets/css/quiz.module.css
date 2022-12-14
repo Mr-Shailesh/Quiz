@@ -1,8 +1,20 @@
-.quizHeader {
+.timer {
+  padding-right: 10px;
+}
+
+.heading {
+  margin-top: 5px;
+  background-color: rgb(243, 243, 243);
+  box-shadow: 0px 1px 10px rgb(223, 223, 223);
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   display: flex;
   justify-content: space-between;
 }
 
-.timer {
-  padding-right: 10px;
+.heading h2 {
+  margin: 0;
+  color: rgb(58, 58, 139);
 }
