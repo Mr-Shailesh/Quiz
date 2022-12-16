@@ -1,10 +1,10 @@
 import React from "react";
 import RegisterForm from "../components/Form";
 
-const Register = () => {
+const Register = ({loading, setLoading}) => {
   return (
     <div>
-      <RegisterForm />
+      <RegisterForm loading={loading} setLoading={setLoading} />
     </div>
   );
 };

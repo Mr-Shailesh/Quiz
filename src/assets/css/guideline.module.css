@@ -6,6 +6,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  display: flex;
+  justify-content: space-between;
 }
 
 .heading h2 {
@@ -13,6 +15,21 @@
   color: rgb(58, 58, 139);
 }
 
+.heading h3 {
+  padding-left: 10px;
+  color: rgb(58, 58, 139);
+}
+
+h2 {
+  color: rgb(58, 58, 139);
+}
+
+h1 {
+
+    color: rgb(58, 58, 139);
+    text-decoration: underline;
+  
+}
 .guideline {
   width: 100%;
   display: flex;
@@ -20,10 +37,10 @@
 }
 
 .left {
-  width: 60%;
+  width: 50%;
 }
 .right {
-  width: 40%;
+  width: 50%;
   margin-top: 50px;
 }
 
@@ -34,9 +51,10 @@
 
 .rules {
   text-align: initial;
-  padding: 20px;
+  padding: 40px;
 }
 
-.rules li h4 {
-  margin: 8px;
+.rules h4 {
+  /* margin: 8px; */
+  color: rgb(58, 58, 139);
 }

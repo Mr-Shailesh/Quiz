@@ -8,8 +8,9 @@ import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import Register from "../Button/Register";
 
-const RegisterForm = () => {
+const RegisterForm = ({ loading, setLoading }) => {
   const [values, setValues] = useState({
     firstName: "",
     lastName: "",
@@ -23,8 +24,6 @@ const RegisterForm = () => {
     country: "",
     timestamp: serverTimestamp(),
   });
-
-  console.log("values", values);
 
   const navigate = useNavigate();
   const collectRef = collection(db, "Users");
@@ -47,7 +46,9 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     setSubmitted(true);
+
     if (
       values.firstName &&
       values.lastName &&
@@ -59,10 +60,12 @@ const RegisterForm = () => {
       values.state &&
       values.country
     ) {
+      setLoading(true);
       setValid(true);
-      localStorage.setItem("User", [values.firstName, values.lastName]);
+      localStorage.setItem("User", [values.firstName]);
       // localStorage.setItem("User", values.lastName);
       await addDoc(collectRef, values);
+      setLoading(false);
       navigate("/guideline");
     }
   };
@@ -77,7 +80,7 @@ const RegisterForm = () => {
       <div className={Styles.form_container}>
         <form className={Styles.register_form} onSubmit={handleSubmit}>
           <div className={Styles.name}>
-            <div>
+            <div className={Styles.gender}>
               <TextField
                 className={Styles.form_field}
                 type="text"
@@ -93,7 +96,7 @@ const RegisterForm = () => {
                 <span>Please enter a first name</span>
               )}
             </div>
-            <div>
+            <div className={Styles.gender}>
               <TextField
                 className={Styles.form_field}
                 type="text"
@@ -164,7 +167,7 @@ const RegisterForm = () => {
                   id="demo-simple-select"
                   name="gender"
                   value={values.gender}
-                  label="Age"
+                  label="Gender"
                   onChange={handleInputChange}
                 >
                   <MenuItem value="Male">Male</MenuItem>
@@ -185,7 +188,7 @@ const RegisterForm = () => {
                   id="demo-simple-select"
                   name="qualification"
                   value={values.qualification}
-                  label="Age"
+                  label="Qualification"
                   onChange={handleInputChange}
                 >
                   <MenuItem value="Hign School">Hign School</MenuItem>
@@ -252,9 +255,7 @@ const RegisterForm = () => {
             </div>
           </div>
 
-          <button className={Styles.form_field} type="submit">
-            Register
-          </button>
+          <Register loading={loading} name="Register" />
         </form>
       </div>
     </div>

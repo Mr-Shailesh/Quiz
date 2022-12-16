@@ -3,6 +3,15 @@
   animation: blink 1s step-start infinite;
 }
 
+.timer {
+  display: flex;
+  justify-content: end;
+}
+
+.timer p {
+  margin: 10px 0;
+}
+
 .end {
   color: red;
 }

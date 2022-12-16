@@ -2,6 +2,15 @@
   padding-right: 10px;
 }
 
+.head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background-color: rgb(243, 243, 243);
+  box-shadow: 0px 1px 10px rgb(223, 223, 223);
+}
+
 .heading {
   margin-top: 5px;
   background-color: rgb(243, 243, 243);
@@ -17,4 +26,45 @@
 .heading h2 {
   margin: 0;
   color: rgb(58, 58, 139);
+}
+.heading h3 {
+  padding-left: 10px;
+  color: rgb(58, 58, 139);
+}
+
+.quiz_container {
+  width: 500px;
+  height: 500px;
+  background-color: white;
+  margin: auto;
+  margin-top: 25px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  padding: 10px;
+}
+
+.quiz_container h3 {
+  text-align: initial;
+  margin: 25px 10px 10px 10px;
+}
+
+.option {
+  text-align: initial;
+  margin-left: 30px;
+  display: grid;
+  gap: 10px;
+}
+
+.data{
+  margin: 0 15px;
+}
+
+.timer {
+  text-align: initial;
+  /* margin-left: 20px; */
+  
+  margin-top: 25px;
+}
+
+.loader {
+  margin-top: 35%;
 }

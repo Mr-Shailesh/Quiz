@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Styles from "../../assets/css/timer.module.css";
 
-const QuiestionTimer = () => {
-  const [time, setTime] = useState(60);
-
+const QuiestionTimer = ({ time, setTime }) => {
   useEffect(() => {
     let timer = setInterval(() => {
       setTime((time) => {
@@ -14,10 +11,15 @@ const QuiestionTimer = () => {
         } else return time - 1;
       });
     }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
     // eslint-disable-next-line
   }, []);
+
   return (
-    <div>
+    <div className={Styles.timer}>
       <p
         className={`${
           time === 0 ? Styles.end : time <= 15 && Styles.countdown

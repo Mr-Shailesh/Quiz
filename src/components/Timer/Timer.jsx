@@ -13,6 +13,7 @@ const Timer = () => {
           alert("Time up!! ");
           navigate("/greet");
           clearInterval(timer);
+          localStorage.clear();
           return 0;
         } else return time - 1;
       });

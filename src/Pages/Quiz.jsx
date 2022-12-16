@@ -5,60 +5,136 @@ import QuiestionTimer from "../components/Timer/QuestionTimer";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "../firebase";
 
-const Quiz = () => {
+import { Form } from "react-bootstrap";
+import NextBtn from "../components/Button/Next";
+import { SyncLoader } from "react-spinners";
+import FinishBtn from "../components/Button/FinishBtn";
+import { useNavigate } from "react-router-dom";
+
+const Quiz = ({ loading, setLoading, marks, setMarks }) => {
+  const [time, setTime] = useState(60);
   const [data, setData] = useState([]);
-  const [random, setRandom] = useState([]);
+  const [questionNo, setQuestionNo] = useState(null);
+  const [selectData, setSelectdata] = useState([]);
+  const [answers, setAnswers] = useState([]);
+
+  const navigate = useNavigate();
+
+  var userName = localStorage.getItem("User");
 
   const q = query(collection(db, "Questions"));
 
   const getData = async () => {
+    setLoading(true);
     const newData = [];
     const querySnapshot = await getDocs(q);
+
     querySnapshot.forEach((doc) => {
       newData.push(doc.data());
     });
-    setData(newData);
+    setData(newData[(Math.random() * newData.length) | 0]);
+    setQuestionNo(questionNo + 1);
+    setLoading(false);
+    setTime(60);
   };
 
   useEffect(() => {
     getData();
+    // eslint-disable-next-line
   }, []);
 
-  var randomItem = data[(Math.random() * data.length) | 0];
-  setTimeout(() => {
-    var randomItem = data[Math.floor(Math.random() * data.length)];
-  }, 1000);
-
   const clickHandler = () => {
-    console.log("randomItem");
-    setRandom(randomItem);
+    setAnswers((prev) => [...prev, selectData]);
+    getData();
+    setData([]);
+    setSelectdata([]);
+    if (selectData.ans === data.Answer) {
+      setMarks(marks + 1);
+    }
   };
 
-  console.log("random", random);
+  useEffect(() => {
+    if (time === 0) {
+      clickHandler();
+    }
+  }, [time]);
+
+  const finishTask = () => {
+    navigate("/greet");
+    localStorage.clear();
+  };
+
+  const optionChange = (id, e) => {
+    setSelectdata({ ans: e.target.value, id });
+  };
 
   return (
     <div>
       <div className={Styles.heading}>
-        <div></div>
+        <h3> Welcome {userName}</h3>
+
         <h2>Quiz</h2>
         <div className={Styles.timer}>
-          <QuiestionTimer />
           <Timer />
         </div>
       </div>
-      <div className={Styles.body}>
-        {data.map((d) => {
-          console.log("d", d.Question);
-          return (
-            <div key={d.Question}>
-              <p>{d.Question}</p>
+      <div className={Styles.quiz_container}>
+        {data.id && data.id ? (
+          <div>
+            <div className={Styles.head}>
+              <h2>{questionNo} / 10</h2>
             </div>
-          );
-        })}
+            <div className={Styles.timer}>
+              <QuiestionTimer time={time} setTime={setTime} />
+            </div>
+            <div className={Styles.data}>
+              <h3>
+                {questionNo && `${questionNo} : `}
+                {data.Question}
+              </h3>
+              <br />
+              <Form className={Styles.option}>
+                {data.Option &&
+                  data.Option.map((option, i) => {
+                    return (
+                      <div key={i} className="mb-3">
+                        <Form.Group controlId="kindOfStand">
+                          <Form.Check
+                            inline
+                            label={option}
+                            value={option}
+                            name="group1"
+                            type="radio"
+                            onChange={(e) => optionChange(data.id, e)}
+                            // checked={option === answer.ans}
+                          />
+                        </Form.Group>
+                      </div>
+                    );
+                  })}
+              </Form>
 
-        <button onClick={clickHandler}>change question</button>
-        <div>
-          {random.Question}</div>
+              {questionNo === 10 ? (
+                <FinishBtn
+                  name="Finish"
+                  finishTask={finishTask}
+                  loading={loading}
+                />
+              ) : (
+                <NextBtn
+                  name="Next"
+                  loading={loading}
+                  clickHandler={clickHandler}
+                  disabled={!selectData.ans ? true : false}
+                />
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className={Styles.loader}>
+            <SyncLoader color="#3689d6" margin={9} size={15} />
+          </div>
+        )}
       </div>
     </div>
   );

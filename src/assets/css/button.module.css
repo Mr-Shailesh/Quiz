@@ -1,0 +1,80 @@
+.button {
+  margin: 10px 0 10px 0;
+  padding: 15px;
+  font-size: 16px;
+  border: 0;
+  font-family: "Roboto", sans-serif;
+  border-radius: 5px;
+  background-color: rgb(34, 114, 15);
+}
+
+.button:hover {
+  background-color: rgb(46, 150, 20);
+}
+
+.button_start {
+  margin: 10px 0 10px 0;
+  padding: 15px;
+  font-size: 16px;
+  border: 0;
+  font-family: "Roboto", sans-serif;
+  width: 150px;
+  border-radius: 5px;
+  background-color: rgb(34, 114, 15);
+}
+
+.button_start:hover {
+  background-color: rgb(46, 150, 20);
+}
+
+.button_next {
+  margin: 35px 0 10px 0;
+  padding: 10px;
+  font-size: 16px;
+  border: 0;
+  font-family: "Roboto", sans-serif;
+  width: 150px;
+  border-radius: 5px;
+  background-color: rgb(34, 114, 15);
+}
+
+.button_next_loading {
+  margin: 35px 0 10px 0;
+  padding: 10px;
+  font-size: 16px;
+  width: 150px;
+  border: 0;
+  cursor: wait;
+  font-family: "Roboto", sans-serif;
+  border-radius: 5px;
+  /* color: black; */
+  background-color: rgb(52, 179, 20);
+}
+
+.button_next:hover {
+  background-color: rgb(46, 150, 20);
+}
+
+.button_select {
+  margin: 10px 0 10px 0;
+  padding: 10px;
+  font-size: 16px;
+  cursor: not-allowed;
+  border: 0;
+  font-family: "Roboto", sans-serif;
+  width: 150px;
+  border-radius: 5px;
+  background-color: rgb(192, 51, 51);
+}
+
+.button_loading {
+  margin: 10px 0 10px 0;
+  padding: 15px;
+  font-size: 16px;
+  border: 0;
+  cursor: wait;
+  font-family: "Roboto", sans-serif;
+  border-radius: 5px;
+  /* color: black; */
+  background-color: rgb(52, 179, 20);
+}
