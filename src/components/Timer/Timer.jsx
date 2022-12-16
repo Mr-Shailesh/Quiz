@@ -11,7 +11,7 @@ const Timer = () => {
       setTime((time) => {
         if (time === 0) {
           alert("Time up!! ");
-          navigate("/greet");
+          navigate("/end");
           clearInterval(timer);
           localStorage.clear();
           return 0;
@@ -24,7 +24,7 @@ const Timer = () => {
     <div>
       <p
         className={`${
-          time === 0 ? Styles.end : time <= 60 && Styles.countdown
+          time === 0 ? Styles.ended : time <= 60 && Styles.countdown
         }`}
       >
         Time left: {`${Math.floor(time / 60)}`.padStart(2, 0)}:

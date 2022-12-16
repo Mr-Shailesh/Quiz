@@ -24,13 +24,13 @@ const Guideline = () => {
               for each question.
             </h4>
 
-            <h4>3. If you submit the answer you cannot re-check the answer.</h4>
+            <h4>3. If you submit the answer you cannot re-check it.</h4>
 
-            <h4>4. Think twice before you submit the answer </h4>
+            <h4>4. Think twice before you submit the answer. </h4>
 
             <h4>
               5. If you fail to submit the answer within 1 minute then will
-              redirect to another question automatically
+              redirect to another question automatically.
             </h4>
             
           </div>

@@ -5,7 +5,7 @@ import Quiz from "../../Pages/Quiz";
 import NoPage from "../../Pages/NoPage";
 
 import Header from "./Header";
-import Greeting from "../../Pages/Greeting";
+import EndPage from "../../Pages/EndPage";
 import { useState } from "react";
 
 const PublicLayout = () => {
@@ -13,7 +13,7 @@ const PublicLayout = () => {
   const [marks, setMarks] = useState(0);
 
   const userName = localStorage.getItem("User");
-  console.log("userName@@@@@", userName);
+
 
   return (
     <div>
@@ -52,10 +52,10 @@ const PublicLayout = () => {
             }
           />
           <Route
-            path="/greet"
+            path="/end"
             element={
               userName ? (
-                <Greeting
+                <EndPage
                   loading={loading}
                   marks={marks}
                   setLoading={setLoading}

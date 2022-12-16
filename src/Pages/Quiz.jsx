@@ -18,6 +18,8 @@ const Quiz = ({ loading, setLoading, marks, setMarks }) => {
   const [selectData, setSelectdata] = useState([]);
   const [answers, setAnswers] = useState([]);
 
+  console.log("answer", answers);
+
   const navigate = useNavigate();
 
   var userName = localStorage.getItem("User");
@@ -57,10 +59,11 @@ const Quiz = ({ loading, setLoading, marks, setMarks }) => {
     if (time === 0) {
       clickHandler();
     }
+    // eslint-disable-next-line
   }, [time]);
 
   const finishTask = () => {
-    navigate("/greet");
+    navigate("/end");
     localStorage.clear();
   };
 
@@ -82,12 +85,12 @@ const Quiz = ({ loading, setLoading, marks, setMarks }) => {
         {data.id && data.id ? (
           <div>
             <div className={Styles.head}>
-              <h2>{questionNo} / 10</h2>
+              <h4> Question {questionNo} of 10</h4>
             </div>
             <div className={Styles.timer}>
               <QuiestionTimer time={time} setTime={setTime} />
             </div>
-            <div className={Styles.data}>
+            <div className={Styles.display_data}>
               <h3>
                 {questionNo && `${questionNo} : `}
                 {data.Question}

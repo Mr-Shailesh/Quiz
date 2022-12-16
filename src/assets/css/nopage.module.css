@@ -1,0 +1,35 @@
+.container {
+  margin-top: 100p;
+}
+
+.head {
+  text-align: center;
+  margin-top: 5%;
+}
+.error {
+  color: rgb(100, 97, 97);
+  font-size: 6rem;
+}
+.inerror {
+  font-size: 2rem;
+}
+.text {
+  color: rgb(49, 48, 48);
+  text-align: center;
+}
+
+.button {
+  width: 100px;
+  margin: auto;
+  font-size: 16px;
+  border: none;
+  font-family: "Roboto", sans-serif;
+  background-color: rgb(34, 114, 15);
+  border-radius: 5px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  padding: 10px;
+}
+
+.button:hover {
+  background-color: rgb(46, 150, 20);
+}

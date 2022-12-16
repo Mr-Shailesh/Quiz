@@ -4,11 +4,15 @@
 
 .head {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 50px;
   background-color: rgb(243, 243, 243);
   box-shadow: 0px 1px 10px rgb(223, 223, 223);
+}
+
+.head h4 {
+  margin-left: 20px;
 }
 
 .heading {
@@ -54,14 +58,14 @@
   gap: 10px;
 }
 
-.data{
+.display_data {
   margin: 0 15px;
 }
 
 .timer {
   text-align: initial;
   /* margin-left: 20px; */
-  
+
   margin-top: 25px;
 }
 

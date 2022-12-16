@@ -57,7 +57,6 @@ const addInputSlice = createSlice({
       state.inputArr.push(payload);
     },
     value(state, { type, payload }) {
-      console.log("payload", payload);
       state.inputArr = payload;
     },
   },

@@ -1,0 +1,27 @@
+.container {
+  width: 550px;
+  background-color: white;
+  margin: auto;
+  margin-top: 25px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  padding: 10px;
+}
+
+.text {
+  font-size: 25px;
+  margin-top: 10rem;
+  font-weight: 700;
+  color: green;
+}
+
+.score {
+  font-size: 35px;
+  font-weight: 700;
+  color: rgb(58, 58, 139);
+}
+
+.grade {
+  font-size: 20px;
+  font-weight: 700;
+  color: rgb(58, 58, 139);
+}

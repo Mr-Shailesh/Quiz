@@ -9,9 +9,11 @@ import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import Register from "../Button/Register";
+import { v4 as uuidv4 } from "uuid";
 
 const RegisterForm = ({ loading, setLoading }) => {
   const [values, setValues] = useState({
+    id: uuidv4(),
     firstName: "",
     lastName: "",
     phone: "",
@@ -42,7 +44,6 @@ const RegisterForm = ({ loading, setLoading }) => {
   };
 
   const [submitted, setSubmitted] = useState(false);
-  const [valid, setValid] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,21 +62,22 @@ const RegisterForm = ({ loading, setLoading }) => {
       values.country
     ) {
       setLoading(true);
-      setValid(true);
       localStorage.setItem("User", [values.firstName]);
-      // localStorage.setItem("User", values.lastName);
+      localStorage.setItem("id", [values.id]);
       await addDoc(collectRef, values);
       setLoading(false);
       navigate("/guideline");
     }
   };
+  const isDisabled = (date) => {
+    const year = date.year();
+    return year > 2005;
+  };
 
   return (
     <div>
       <div className={Styles.heading}>
-        {/* <h2>Register To Attempt The Exam</h2> */}
         <h2> Register to take the assessment</h2>
-        {/* Register to take the assessment. */}
       </div>
       <div className={Styles.form_container}>
         <form className={Styles.register_form} onSubmit={handleSubmit}>
@@ -146,9 +148,10 @@ const RegisterForm = ({ loading, setLoading }) => {
             <DatePicker
               label="Date of Birth"
               name="dob"
-              // value={values.dob}
+              shouldDisableYear={isDisabled}
+              shouldDisableDate={isDisabled}
+              shouldDisableMonth={isDisabled}
               value={date}
-              // onChange={handleInputChange}
               onChange={(newValue) => {
                 setDate(newValue);
               }}

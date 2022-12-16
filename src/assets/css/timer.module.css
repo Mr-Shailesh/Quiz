@@ -2,17 +2,17 @@
   color: red;
   animation: blink 1s step-start infinite;
 }
-
 .timer {
   display: flex;
-  justify-content: end;
+
+  justify-content: flex-end;
 }
 
 .timer p {
   margin: 10px 0;
 }
 
-.end {
+.ended {
   color: red;
 }
 

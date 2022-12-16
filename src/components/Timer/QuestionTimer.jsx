@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Styles from "../../assets/css/timer.module.css";
 
 const QuiestionTimer = ({ time, setTime }) => {
