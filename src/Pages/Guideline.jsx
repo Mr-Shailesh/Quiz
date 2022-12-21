@@ -1,11 +1,54 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Styles from "../assets/css/guideline.module.css";
 import guideline from "../assets/images/guideline.jpeg";
 import CommonBtn from "../components/Button/CommonBtn";
+import { collection, doc, getDocs, query, setDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 const Guideline = () => {
   var userName = localStorage.getItem("User");
+  const [data, setData] = useState([]);
+  const navigate = useNavigate();
+
+  const q = query(collection(db, "Questions"));
+
+  const getData = async () => {
+    const newData = [];
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((doc) => {
+      newData.push(doc.data());
+    });
+    setData(newData);
+  };
+
+  useEffect(() => {
+    getData();
+    // eslint-disable-next-line
+  }, []);
+
+  let n = 10;
+  const shuffled = data.sort(() => 0.5 - Math.random());
+  let current = shuffled.slice(0, n);
+
+  const currentData = async () => {
+    // eslint-disable-next-line
+    {
+      const newCurrentData = [];
+      if (current) {
+        current.map(async (currentD, i) => {
+          newCurrentData.push(currentD.id);
+          const id = i + 1;
+          return await setDoc(doc(db, "Current", id.toString()), currentD);
+        });
+      }
+
+      localStorage.setItem("currentData", JSON.stringify(newCurrentData));
+    }
+    navigate("/quiz");
+  };
+
   return (
     <div>
       <div className={Styles.heading}>
@@ -32,10 +75,12 @@ const Guideline = () => {
               5. If you fail to submit the answer within 1 minute then will
               redirect to another question automatically.
             </h4>
-            
+            <h4>
+              6. <span>Don't try to refesh the page.</span>
+            </h4>
           </div>
           <div>
-          <h2>Best Of Luck 🙂</h2>
+            <h2>Best Of Luck 🙂</h2>
           </div>
         </div>
         <div className={Styles.right}>
@@ -43,9 +88,7 @@ const Guideline = () => {
         </div>
       </div>
       <div>
-        <Link to="/quiz">
-          <CommonBtn name="Start Quiz" />
-        </Link>
+        <CommonBtn name="Start Quiz" currentData={currentData} />
       </div>
     </div>
   );

@@ -1,11 +1,12 @@
 import React from "react";
 import Styles from "../../assets/css/button.module.css";
 
-
-const CommonBtn = ({ name }) => {
+const CommonBtn = ({ name, currentData }) => {
   return (
     <div>
-      <button className={Styles.button_start}>{name}</button>
+      <button onClick={currentData} className={Styles.button_start}>
+        {name}
+      </button>
     </div>
   );
 };

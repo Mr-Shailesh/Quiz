@@ -1,30 +1,25 @@
+import { useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Register from "../../Pages/Register";
 import Guideline from "../../Pages/Guideline";
 import Quiz from "../../Pages/Quiz";
 import NoPage from "../../Pages/NoPage";
-
 import Header from "./Header";
 import EndPage from "../../Pages/EndPage";
-import { useState } from "react";
 
 const PublicLayout = () => {
   const [loading, setLoading] = useState(false);
   const [marks, setMarks] = useState(0);
-
   const userName = localStorage.getItem("User");
-
 
   return (
     <div>
       <Header />
       <Routes>
-        {/* {!userName ? ( */}
         <Route
           path="/"
           element={<Register loading={loading} setLoading={setLoading} />}
         />
-        {/* ) : ( */}
         <>
           <Route
             path="/guideline"
@@ -66,7 +61,6 @@ const PublicLayout = () => {
             }
           />
         </>
-        {/* )} */}
         <Route path="*" element={<NoPage />} />
       </Routes>
     </div>

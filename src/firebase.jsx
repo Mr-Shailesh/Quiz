@@ -2,8 +2,8 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDC8bOzJ3qL7Fy-8Ml8swPfGlAE_c_Ek1Y",
-  authDomain: "react-quiz-dd78a.firebaseapp.com",
+  apiKey: `${process.env.REACT_APP_API_KEY}`,
+  authDomain: `${process.env.REACT_APP_DOMAIN}`,
   projectId: "react-quiz-dd78a",
   storageBucket: "react-quiz-dd78a.appspot.com",
   messagingSenderId: "138507236864",

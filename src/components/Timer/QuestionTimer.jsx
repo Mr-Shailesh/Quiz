@@ -1,12 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
 import Styles from "../../assets/css/timer.module.css";
 
-const QuiestionTimer = ({ time, setTime }) => {
+const QuiestionTimer = ({ clickHandler }) => {
+  const [time, setTime] = useState(60);
+
   useEffect(() => {
     let timer = setInterval(() => {
       setTime((time) => {
         if (time === 0) {
-          clearInterval(timer);
+          clickHandler();
+
           return 0;
         } else return time - 1;
       });

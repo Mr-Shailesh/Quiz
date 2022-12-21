@@ -25,10 +25,8 @@ h2 {
 }
 
 h1 {
-
-    color: rgb(58, 58, 139);
-    text-decoration: underline;
-  
+  color: rgb(58, 58, 139);
+  text-decoration: underline;
 }
 .guideline {
   width: 100%;

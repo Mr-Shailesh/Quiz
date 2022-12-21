@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Styles from "../../assets/css/form.module.css";
 import TextField from "@mui/material/TextField";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
@@ -7,7 +7,13 @@ import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  query,
+  serverTimestamp,
+} from "firebase/firestore";
 import Register from "../Button/Register";
 import { v4 as uuidv4 } from "uuid";
 
@@ -26,6 +32,25 @@ const RegisterForm = ({ loading, setLoading }) => {
     country: "",
     timestamp: serverTimestamp(),
   });
+
+  const [data, setData] = useState([]);
+
+  const q = query(collection(db, "Users"));
+
+  const getData = async () => {
+    const newData = [];
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((doc) => {
+      newData.push(doc.data());
+    });
+    setData(newData);
+  };
+
+  useEffect(() => {
+    getData();
+    // eslint-disable-next-line
+  }, []);
 
   const navigate = useNavigate();
   const collectRef = collection(db, "Users");
@@ -47,9 +72,7 @@ const RegisterForm = ({ loading, setLoading }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setSubmitted(true);
-
     if (
       values.firstName &&
       values.lastName &&
@@ -73,6 +96,8 @@ const RegisterForm = ({ loading, setLoading }) => {
     const year = date.year();
     return year > 2005;
   };
+
+  let newData = [];
 
   return (
     <div>
@@ -126,6 +151,11 @@ const RegisterForm = ({ loading, setLoading }) => {
             label="Phone Number"
             variant="outlined"
           />
+          {data &&
+            // eslint-disable-next-line
+            data.map((d) => {
+              newData.push(d.email);
+            })}
 
           {submitted && !values.phone && <span>Please enter phone number</span>}
 
@@ -139,7 +169,9 @@ const RegisterForm = ({ loading, setLoading }) => {
             label="Email"
             variant="outlined"
           />
-
+          {newData.includes(values.email) && (
+            <span>User with this email already exists.</span>
+          )}
           {submitted && !values.email && (
             <span>Please enter an email address</span>
           )}
@@ -258,7 +290,11 @@ const RegisterForm = ({ loading, setLoading }) => {
             </div>
           </div>
 
-          <Register loading={loading} name="Register" />
+          <Register
+            loading={loading}
+            name="Register"
+            disabled={newData.includes(values.email) ? true : false}
+          />
         </form>
       </div>
     </div>

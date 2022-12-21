@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import addInputSlice from "./addInput-slice";
-
-// Redux Store
+import qTimerReducer from "./qTimer-slice";
 
 const store = configureStore({
   reducer: {
-    addInput: addInputSlice.reducer,
+    qTimer: qTimerReducer,
   },
 });
 

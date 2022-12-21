@@ -12,12 +12,14 @@ const Timer = () => {
         if (time === 0) {
           alert("Time up!! ");
           navigate("/end");
-          clearInterval(timer);
           localStorage.clear();
           return 0;
         } else return time - 1;
       });
     }, 1000);
+    return () => {
+      clearInterval(timer);
+    };
     // eslint-disable-next-line
   }, []);
   return (
