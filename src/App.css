@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+.react-confirm-alert-overlay {
+  background-color: rgb(0 0 0 / 80%) !important;
+  align-items: unset !important;
+}

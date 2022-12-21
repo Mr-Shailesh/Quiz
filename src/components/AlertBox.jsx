@@ -1,19 +1,51 @@
 import { confirmAlert } from "react-confirm-alert";
+import Styles from "../assets/css/alertBox.module.css";
+import "../App.css";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
 
 const AlertBox = ({ forceEnd, setShowAlert }) => {
-  return confirmAlert({
-    title: "If you leave the page you will lost the data.",
-    message: "Are you sure want to leave.",
-    buttons: [
-      {
-        label: "Yes",
-        onClick: () => forceEnd(),
-      },
-      {
-        label: "No",
-        onClick: () => setShowAlert(false),
-      },
-    ],
+  confirmAlert({
+    customUI: ({ onClose }) => {
+      const closePopUp = () => {
+        onClose();
+        setShowAlert(false);
+      };
+      return (
+        <div className="custom-ui">
+          <div className={Styles.ui}>
+            <span className={Styles.reminder}>
+              Reminder : The timer is running !
+            </span>
+            <h2>If you leave the page you will lost the data.</h2>
+
+            <div className={Styles.btn}>
+              <div>
+                <span className={Styles.confirm}>
+                  Are you sure want to leave.
+                </span>
+              </div>
+              <div>
+                <Stack spacing={2} direction="row">
+                  <Button onClick={closePopUp} variant="contained">
+                    Cancel
+                  </Button>
+                  <Button
+                    onClick={() => forceEnd()}
+                    color="error"
+                    variant="contained"
+                  >
+                    Leave
+                  </Button>
+                </Stack>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    },
+
+    closeOnClickOutside: false,
   });
 };
 

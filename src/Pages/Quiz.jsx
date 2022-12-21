@@ -81,10 +81,10 @@ const Quiz = ({ loading, setLoading, marks, setMarks }) => {
     setShowAlert(true);
   });
 
-  window.onbeforeunload = function (e) {
-    localStorage.clear();
-  };
-
+  // window.onbeforeunload = function (e) {
+  //   localStorage.clear();
+  // };
+  console.log("showAlert", showAlert);
   return (
     <div>
       {showAlert && (
