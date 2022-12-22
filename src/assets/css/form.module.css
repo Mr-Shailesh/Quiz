@@ -23,7 +23,7 @@
 }
 
 .form_container {
-  width: 550px;
+  width: 650px;
   background-color: white;
   margin: auto;
   margin-top: 25px;
@@ -84,4 +84,8 @@ button:disabled {
 
 .address {
   display: flex;
+}
+
+.job {
+  width: 100%;
 }

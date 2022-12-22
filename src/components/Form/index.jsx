@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Styles from "../../assets/css/form.module.css";
 import TextField from "@mui/material/TextField";
+import { useTheme } from "@mui/material/styles";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
@@ -27,11 +28,56 @@ const RegisterForm = ({ loading, setLoading }) => {
     gender: "",
     dob: null,
     qualification: "",
+    position: "",
+    experience: "",
     city: "",
     state: "",
     country: "",
     timestamp: serverTimestamp(),
   });
+
+  const theme = useTheme();
+  // eslint-disable-next-line
+  const [personName, setPersonName] = useState([]);
+  const positionNames = [
+    "IT coordinator",
+    "UX designer",
+    "Data analyst",
+    "Web developer",
+    "Product manager",
+    "Front-end developer",
+    "Full stack developer",
+    "Mobile developers",
+    "Data scientists",
+    "Back-end developers",
+    "Software architects",
+    "Computer programmer",
+    "Junior Java developer",
+    "Software QA engineer",
+    "Application developer",
+    ".Net developer",
+    "Software test engineer",
+  ];
+
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
+
+  function getStyles(name, personName, theme) {
+    return {
+      fontWeight:
+        personName.indexOf(name) === -1
+          ? theme.typography.fontWeightRegular
+          : theme.typography.fontWeightMedium,
+    };
+  }
 
   const [data, setData] = useState([]);
 
@@ -176,24 +222,27 @@ const RegisterForm = ({ loading, setLoading }) => {
             <span>Please enter an email address</span>
           )}
 
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              label="Date of Birth"
-              name="dob"
-              shouldDisableYear={isDisabled}
-              shouldDisableDate={isDisabled}
-              shouldDisableMonth={isDisabled}
-              value={date}
-              onChange={(newValue) => {
-                setDate(newValue);
-              }}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </LocalizationProvider>
-
-          {submitted && !values.dob && <span>Please enter date of birth</span>}
-
           <div className={Styles.name}>
+            <div className={Styles.gender}>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                  label="Date of Birth"
+                  name="dob"
+                  shouldDisableYear={isDisabled}
+                  shouldDisableDate={isDisabled}
+                  shouldDisableMonth={isDisabled}
+                  value={date}
+                  onChange={(newValue) => {
+                    setDate(newValue);
+                  }}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </LocalizationProvider>
+
+              {submitted && !values.dob && (
+                <span>Please enter date of birth</span>
+              )}
+            </div>
             <div className={Styles.gender}>
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Gender</InputLabel>
@@ -226,7 +275,7 @@ const RegisterForm = ({ loading, setLoading }) => {
                   label="Qualification"
                   onChange={handleInputChange}
                 >
-                  <MenuItem value="Hign School">Hign School</MenuItem>
+                  <MenuItem value="Hign School">High School</MenuItem>
                   <MenuItem value="Higher Secondary">Higher Secondary</MenuItem>
                   <MenuItem value="Bachelors">Bachelors</MenuItem>
                   <MenuItem value="Masters">Masters</MenuItem>
@@ -235,6 +284,69 @@ const RegisterForm = ({ loading, setLoading }) => {
 
               {submitted && !values.qualification && (
                 <span>Please enter qualification</span>
+              )}
+            </div>
+          </div>
+
+          <div className={Styles.address}>
+            <InputLabel id="demo-simple-select-label">Job :</InputLabel>
+          </div>
+
+          <div className={Styles.name}>
+            <div className={Styles.job}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Position</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  name="position"
+                  value={values.position}
+                  label="Position"
+                  onChange={handleInputChange}
+                  MenuProps={MenuProps}
+                >
+                  {positionNames.map((name) => {
+                    return (
+                      <MenuItem
+                        key={name}
+                        value={name}
+                        style={getStyles(name, personName, theme)}
+                      >
+                        {name}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+
+              {submitted && !values.position && (
+                <span>Please enter position</span>
+              )}
+            </div>
+
+            <div className={Styles.job}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">
+                  Experience
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  name="experience"
+                  value={values.experience}
+                  label="Experience"
+                  onChange={handleInputChange}
+                >
+                  <MenuItem value="Fresher">Fresher</MenuItem>
+                  <MenuItem value="1 year">1 year</MenuItem>
+                  <MenuItem value="2 years">2 years</MenuItem>
+                  <MenuItem value="3 years">3 years</MenuItem>
+                  <MenuItem value="4 + years">4 + years</MenuItem>
+                </Select>
+              </FormControl>
+
+              {submitted && !values.experience && (
+                <span>Please enter experience</span>
               )}
             </div>
           </div>

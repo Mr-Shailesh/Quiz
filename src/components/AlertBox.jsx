@@ -11,13 +11,18 @@ const AlertBox = ({ forceEnd, setShowAlert }) => {
         onClose();
         setShowAlert(false);
       };
+
+      const leavePage = () => {
+        forceEnd();
+        onClose();
+      };
       return (
         <div className="custom-ui">
           <div className={Styles.ui}>
             <span className={Styles.reminder}>
               Reminder : The timer is running !
             </span>
-            <h2>If you leave the page you will lost the data.</h2>
+            <h2>If you refresh the page you will lost the data.</h2>
 
             <div className={Styles.btn}>
               <div>
@@ -30,11 +35,7 @@ const AlertBox = ({ forceEnd, setShowAlert }) => {
                   <Button onClick={closePopUp} variant="contained">
                     Cancel
                   </Button>
-                  <Button
-                    onClick={() => forceEnd()}
-                    color="error"
-                    variant="contained"
-                  >
+                  <Button onClick={leavePage} color="error" variant="contained">
                     Leave
                   </Button>
                 </Stack>

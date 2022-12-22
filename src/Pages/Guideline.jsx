@@ -44,7 +44,7 @@ const Guideline = () => {
         });
       }
 
-      localStorage.setItem("currentData", JSON.stringify(newCurrentData));
+      // localStorage.setItem("currentData", JSON.stringify(newCurrentData));
     }
     navigate("/quiz");
   };
@@ -63,7 +63,7 @@ const Guideline = () => {
             <h4> 1. This Quiz contain total 10 questions.</h4>
 
             <h4>
-              2. You will get total 10 minutes to complete this quiz 1 minute
+              2. You will get total 10 minutes to complete this quiz. 1 minute
               for each question.
             </h4>
 
@@ -72,11 +72,14 @@ const Guideline = () => {
             <h4>4. Think twice before you submit the answer. </h4>
 
             <h4>
-              5. If you fail to submit the answer within 1 minute then will
+              5. If you fail to submit the answer within 1 minute then it will
               redirect to another question automatically.
             </h4>
             <h4>
-              6. <span>Don't try to refesh the page.</span>
+              <span>6. With your Email ID, you can give exam once.</span>
+            </h4>
+            <h4>
+              <span> 7. Don't try to Refesh the page or Go back.</span>
             </h4>
           </div>
           <div>

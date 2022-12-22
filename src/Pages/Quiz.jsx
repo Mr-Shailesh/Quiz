@@ -71,6 +71,7 @@ const Quiz = ({ loading, setLoading, marks, setMarks }) => {
   };
 
   const forceEnd = () => {
+    setShowAlert(false);
     navigate("/end");
     setTimeout(function () {
       localStorage.clear();
@@ -81,10 +82,15 @@ const Quiz = ({ loading, setLoading, marks, setMarks }) => {
     setShowAlert(true);
   });
 
-  // window.onbeforeunload = function (e) {
-  //   localStorage.clear();
-  // };
-  console.log("showAlert", showAlert);
+  window.onbeforeunload = function (e) {
+    localStorage.clear();
+  };
+
+  window.onpopstate = function (e) {
+    navigate("/end");
+    localStorage.clear();
+  };
+
   return (
     <div>
       {showAlert && (

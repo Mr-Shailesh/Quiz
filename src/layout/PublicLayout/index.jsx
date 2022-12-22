@@ -18,7 +18,13 @@ const PublicLayout = () => {
       <Routes>
         <Route
           path="/"
-          element={<Register loading={loading} setLoading={setLoading} />}
+          element={
+            !userName ? (
+              <Register loading={loading} setLoading={setLoading} />
+            ) : (
+              <Navigate to="/guideline" />
+            )
+          }
         />
         <>
           <Route
