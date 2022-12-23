@@ -16,6 +16,7 @@ const AlertBox = ({ forceEnd, setShowAlert }) => {
         forceEnd();
         onClose();
       };
+
       return (
         <div className="custom-ui">
           <div className={Styles.ui}>
@@ -35,7 +36,11 @@ const AlertBox = ({ forceEnd, setShowAlert }) => {
                   <Button onClick={closePopUp} variant="contained">
                     Cancel
                   </Button>
-                  <Button onClick={leavePage} color="error" variant="contained">
+                  <Button
+                    onClick={leavePage}
+                    color="error"
+                    variant="contained"
+                  >
                     Leave
                   </Button>
                 </Stack>

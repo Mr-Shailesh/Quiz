@@ -5,15 +5,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-  /* -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("https://ciphernutz.com/_next/static/media/cn-black.37a7f9ce.svg");
-  background-repeat: no-repeat;
-  background-size: 80vh;
-  background-position: bottom; */
-  /* background-position: center; */
-  /* backdrop-filter: blur(7px); */
-  /* background-color: aqua; */
 }
 
 code {

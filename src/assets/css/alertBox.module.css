@@ -6,29 +6,22 @@
   text-align: center;
 }
 
-/* .ui h2 {
-  color: red;
+.reminder {
   text-align: center;
-} */
-
-.reminder{
-    text-align: center;
-    font-size: 22px !important;
-    color: red !important;
-    font-weight: 700;
+  font-size: 22px !important;
+  color: red !important;
+  font-weight: 700;
 }
-
-
 
 .confirm {
-    color: rgb(102, 102, 102);
-    font-size: 19px !important;
-    font-weight: 700;
+  color: rgb(102, 102, 102);
+  font-size: 19px !important;
+  font-weight: 700;
 }
 
-.btn{
-    margin-top: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.btn {
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

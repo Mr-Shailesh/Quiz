@@ -35,10 +35,12 @@ const RegisterForm = ({ loading, setLoading }) => {
     country: "",
     timestamp: serverTimestamp(),
   });
-
-  const theme = useTheme();
   // eslint-disable-next-line
   const [personName, setPersonName] = useState([]);
+  const [data, setData] = useState([]);
+
+  const theme = useTheme();
+  
   const positionNames = [
     "IT coordinator",
     "UX designer",
@@ -78,8 +80,6 @@ const RegisterForm = ({ loading, setLoading }) => {
           : theme.typography.fontWeightMedium,
     };
   }
-
-  const [data, setData] = useState([]);
 
   const q = query(collection(db, "Users"));
 

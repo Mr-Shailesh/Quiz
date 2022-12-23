@@ -5,10 +5,12 @@ import guideline from "../assets/images/guideline.jpeg";
 import CommonBtn from "../components/Button/CommonBtn";
 import { collection, doc, getDocs, query, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import { Checkbox } from "@mui/material";
 
 const Guideline = () => {
   var userName = localStorage.getItem("User");
   const [data, setData] = useState([]);
+  const [isChecked, setIsChecked] = useState(false);
   const navigate = useNavigate();
 
   const q = query(collection(db, "Questions"));
@@ -43,8 +45,6 @@ const Guideline = () => {
           return await setDoc(doc(db, "Current", id.toString()), currentD);
         });
       }
-
-      // localStorage.setItem("currentData", JSON.stringify(newCurrentData));
     }
     navigate("/quiz");
   };
@@ -81,6 +81,24 @@ const Guideline = () => {
             <h4>
               <span> 7. Don't try to Refesh the page or Go back.</span>
             </h4>
+            <div className={Styles.terms}>
+              <Checkbox
+                id="checkBox"
+                onChange={() => setIsChecked(!isChecked)}
+              />
+              <label htmlFor="checkBox">
+                <p>
+                  <b>Yes</b>, I understand and agree to the{" "}
+                  <u>
+                    <b>Rules and Guideline</b> ,
+                  </u>
+                  including all the{" "}
+                  <span className={Styles.term_condition}>
+                    Terms & Privacy Policy
+                  </span>
+                </p>
+              </label>
+            </div>
           </div>
           <div>
             <h2>Best Of Luck 🙂</h2>
@@ -91,7 +109,11 @@ const Guideline = () => {
         </div>
       </div>
       <div>
-        <CommonBtn name="Start Quiz" currentData={currentData} />
+        <CommonBtn
+          name="Start Quiz"
+          disabled={isChecked ? false : true}
+          currentData={currentData}
+        />
       </div>
     </div>
   );

@@ -31,7 +31,9 @@ const PublicLayout = () => {
             path="/guideline"
             element={
               userName ? (
-                <Guideline loading={loading} setLoading={setLoading} />
+                <Guideline
+                 
+                />
               ) : (
                 <Navigate to="/" />
               )
@@ -42,6 +44,7 @@ const PublicLayout = () => {
             element={
               userName ? (
                 <Quiz
+                 
                   loading={loading}
                   marks={marks}
                   setMarks={setMarks}

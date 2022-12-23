@@ -35,10 +35,10 @@ h1 {
 }
 
 .left {
-  width: 50%;
+  width: 60%;
 }
 .right {
-  width: 50%;
+  width: 40%;
   margin-top: 50px;
 }
 
@@ -53,6 +53,19 @@ h1 {
 }
 
 .rules h4 {
-  /* margin: 8px; */
   color: rgb(58, 58, 139);
+}
+
+.terms {
+  display: flex;
+  margin-top: 55px;
+}
+
+.terms p {
+  font-size: 15px;
+  color: grey;
+}
+
+.term_condition {
+  cursor: pointer;
 }

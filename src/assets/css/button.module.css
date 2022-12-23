@@ -46,8 +46,6 @@
   border: 0;
   cursor: wait;
   font-family: "Roboto", sans-serif;
-  border-radius: 5px;
-  /* color: black; */
   background-color: rgb(52, 179, 20);
 }
 
@@ -75,6 +73,5 @@
   cursor: wait;
   font-family: "Roboto", sans-serif;
   border-radius: 5px;
-  /* color: black; */
   background-color: rgb(52, 179, 20);
 }

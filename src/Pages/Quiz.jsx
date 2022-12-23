@@ -16,9 +16,9 @@ const Quiz = ({ loading, setLoading, marks, setMarks }) => {
   const [currentData, setCurrentData] = useState();
   const [questionNo, setQuestionNo] = useState(null);
   const [selectData, setSelectdata] = useState([]);
+  const [showAlert, setShowAlert] = useState(false);
   // eslint-disable-next-line
   const [answers, setAnswers] = useState([]);
-  const [showAlert, setShowAlert] = useState(false);
 
   const navigate = useNavigate();
 
@@ -88,8 +88,12 @@ const Quiz = ({ loading, setLoading, marks, setMarks }) => {
 
   window.onpopstate = function (e) {
     navigate("/end");
-    localStorage.clear();
+    setTimeout(function () {
+      localStorage.clear();
+    }, 500);
   };
+
+  console.log("showAlert", showAlert);
 
   return (
     <div>
